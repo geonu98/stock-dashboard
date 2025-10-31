@@ -91,4 +91,8 @@ public class JwtTokenProvider {
     public long getExpiryDuration() {
         return jwtExpirationInMs;
     }
+
+    public Long getJwtExpirationInMs() {
+        return jwtExpirationInMs;
+    }
 }

@@ -1,7 +1,11 @@
 package com.stock.dashboard.backend.model.payload.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class JwtAuthenticationResponse {
 
     private String accessToken;
@@ -12,30 +16,42 @@ public class JwtAuthenticationResponse {
 
     private Long expiryDuration;
 
-
     // 신규 회원 여부를 프론트로 전달하기 위한 필드
     @JsonProperty("isNewUser")
     private boolean isNewUser;
-
 
     // 프론트에서 추가정보 입력 시 필요한 userId
     @JsonProperty("id")
     private Long userId;
 
-    public JwtAuthenticationResponse(String accessToken, String refreshToken, Long expiryDuration) {
-        this.accessToken = accessToken;
-        this.refreshToken = refreshToken;
-        this.expiryDuration = expiryDuration;
-        tokenType = "Bearer ";
+    /**
+     * 기본 생성자 (Lombok이 자동 생성)
+     */
+    public JwtAuthenticationResponse() {
+        this.tokenType = "Bearer ";
     }
 
-    public JwtAuthenticationResponse(String accessToken) { // 테스트용 임시 생성
+    /**
+     * AccessToken만 있는 경우 (테스트용)
+     */
+    public JwtAuthenticationResponse(String accessToken) {
         this.accessToken = accessToken;
         this.tokenType = "Bearer ";
     }
 
+    /**
+     * AccessToken + RefreshToken + 만료시간
+     */
+    public JwtAuthenticationResponse(String accessToken, String refreshToken, Long expiryDuration) {
+        this.accessToken = accessToken;
+        this.refreshToken = refreshToken;
+        this.expiryDuration = expiryDuration;
+        this.tokenType = "Bearer ";
+    }
 
-    //  신규 생성자: isNewUser, userId 포함
+    /**
+     * AccessToken + RefreshToken + 만료시간 + 신규회원여부 + userId
+     */
     public JwtAuthenticationResponse(String accessToken, String refreshToken, Long expiryDuration, boolean isNewUser, Long userId) {
         this.accessToken = accessToken;
         this.refreshToken = refreshToken;
@@ -44,46 +60,4 @@ public class JwtAuthenticationResponse {
         this.isNewUser = isNewUser;
         this.userId = userId;
     }
-
-
-    public String getAccessToken() {
-        return accessToken;
-    }
-
-    public void setAccessToken(String accessToken) {
-        this.accessToken = accessToken;
-    }
-
-    public String getTokenType() {
-        return tokenType;
-    }
-
-    public void setTokenType(String tokenType) {
-        this.tokenType = tokenType;
-    }
-
-    public String getRefreshToken() {
-        return refreshToken;
-    }
-
-    public void setRefreshToken(String refreshToken) {
-        this.refreshToken = refreshToken;
-    }
-
-    public Long getExpiryDuration() {
-        return expiryDuration;
-    }
-
-    public void setExpiryDuration(Long expiryDuration) {
-        this.expiryDuration = expiryDuration;
-    }
-
-    //isNewUser 필드 접근자
-    public boolean isNewUser() {return isNewUser;}
-    public void setNewUser(boolean newUser) {isNewUser = newUser;}
-
-    public Long getUserId() {return userId;}
-
-    public void setUserId(Long userId) {this.userId = userId;}
-
 }
