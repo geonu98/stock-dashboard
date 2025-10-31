@@ -37,7 +37,7 @@ public class RefreshToken extends DateAudit {
     private Long refreshCount = 0L; // 기본값 0으로 초기화
 
     @Column(name = "EXPIRY_DT", nullable = false)
-    private Instant expiryDate;
+    private Instant expiryDt;
 
     /**
      * 리프레시 토큰 사용 횟수를 1 증가시킵니다.

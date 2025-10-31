@@ -66,7 +66,7 @@ public class JwtTokenValidator {
     private void validateTokenIsNotForALoggedOutDevice(String authToken) {
         OnUserLogoutSuccessEvent previouslyLoggedOutEvent = loggedOutTokenCache.getLogoutEventForToken(authToken);
         if (previouslyLoggedOutEvent != null) {
-            String userEmail = previouslyLoggedOutEvent.getUserEmail();
+            String userEmail = previouslyLoggedOutEvent.getUserIdentifier();
             Date logoutEventDate = previouslyLoggedOutEvent.getEventTime();
             String errorMessage = String.format(
                     "Token corresponds to an already logged out user [%s] at [%s]. Please login again",
