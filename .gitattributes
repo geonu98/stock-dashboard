@@ -1,3 +1,42 @@
+# =======================================
+# 🧩 Git Attributes for Cross-Platform
+# Mac ↔ Windows ↔ Linux
+# =======================================
+
+# 모든 텍스트 파일은 LF로 통일
+* text=auto eol=lf
+
+# -----------------------------
+# Gradle / Shell / Batch
+# -----------------------------
 /gradlew text eol=lf
+*.gradle text eol=lf
+*.sh text eol=lf
 *.bat text eol=crlf
+*.properties text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.env text eol=lf
+
+# -----------------------------
+# 소스코드
+# -----------------------------
+*.java text eol=lf
+*.kt text eol=lf
+*.xml text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+
+# -----------------------------
+# 바이너리 파일 (변환 금지)
+# -----------------------------
 *.jar binary
+*.class binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.zip binary
+*.exe binary
