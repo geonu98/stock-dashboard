@@ -70,6 +70,10 @@ public class User extends DateAudit implements UserDetails {
     private Set<InterestsVO> interests = new HashSet<>();
 
 
+
+
+
+
     public User() {
         super();
     }
