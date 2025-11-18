@@ -50,3 +50,12 @@ dist/
 # ------------------------------------------------------------------
 .mtj.tmp/
 .apt_generated
+
+# Gradle cache
+.gradle/
+backend/.gradle/
+
+
+# Misc (unwanted files)
+FETCH_HEAD
+git

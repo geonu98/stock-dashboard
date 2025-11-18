@@ -1,0 +1,42 @@
+version: "3.8"
+
+services:
+  mysql:
+    image: mysql:8
+    container_name: stock-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: stockdb
+      MYSQL_USER: stock_user
+      MYSQL_PASSWORD: stock_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: .
+      dockerfile: ./backend/Dockerfile
+    container_name: stock-backend
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_NAME=stockdb
+      - DB_USER=stock_user
+      - DB_PASSWORD=stock_password
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+volumes:
+  mysql-data:
